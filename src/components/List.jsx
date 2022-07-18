@@ -13,6 +13,7 @@ const List = ({lists, remove}) => {
                             classNames={'modalAnimation'}
                         >
                             <ListBlock
+
                                 number={index+1}
                                 remove={remove}
                                 key={index}
