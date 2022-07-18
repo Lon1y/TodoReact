@@ -1,0 +1,15 @@
+.MyBtn {
+    height: auto;
+    width: auto;
+    background: #39373B;
+    border: 2px solid #fffcee;
+    color: #fffcee;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.MyBtn:hover {
+    transition: 0.5s;
+    background: #f0e5d7;
+    color: #2B292D;
+}
