@@ -6,28 +6,22 @@ import MyModal from "./components/Modal/MyModal";
 import List from "./components/List";
 import MyButton from "./components/UI/MyButton/MyButton";
 import AddForm from "./components/addForm";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
-
 function App() {
-    const [lists, setList] = useState([
-        {id:1, name: 'JS', description: 'JS-suck'},
-        {id:2, name: 'React', description: 'React-suck'},
-        {id:3, name: 'Vue', description: 'Vue-suck'},
-        {id:4, name: 'Angular', description: 'Angular-suck'},
-        {id:5, name: 'rest', description: 'rest-suck'},
-        {id:6, name: 'next', description: 'next-suck'},
-    ])
+    const arrJSON = JSON.parse(localStorage.getItem('list'))
+    const [lists, setList] = useState(arrJSON?arrJSON:[])
     const [modal, setModal] = useState(false)
 
     const createList = (newList)=> {
         setList([...lists, newList])
         changeModal()
+        localStorage.setItem('list', JSON.stringify([...lists, newList]))
     }
     const changeModal = () => {
         setModal(!modal)
     }
     const removeListItem = (item) => {
         setList(lists.filter(el => el.id!==item))
+        localStorage.setItem('list', JSON.stringify(lists.filter(el => el.id!==item)))
     }
 
   return (
