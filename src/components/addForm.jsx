@@ -1,18 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MyButton from "./UI/MyButton/MyButton";
 import MyInput from "./UI/MyInput/MyInput";
 
-const AddForm = () => {
+const AddForm = ({create}) => {
+    const [list, setList] = useState({name:'', description: '',})
+    const CreateList = (def) => {
+        def.preventDefault()
+        const newList = {
+            ...list, id:Date.now()
+        }
+        create(newList)
+        list.name=''
+        list.description=''
+    }
+
     return (
         <form style={{display:'flex', justifyContent:'center', flexDirection:'column'}}>
             <MyInput
                 placeholder="Название заголовка"
+                value={list.name}
+                onChange = {e=>setList({...list, name:e.target.value})}
             />
             <MyInput
                 placeholder="Описание"
+                value={list.description}
+                onChange = {e=>setList({...list, description:e.target.value})}
             />
             <MyButton
                 value={"Создать задание!"}
+                onClick={CreateList}
             />
         </form>
     );

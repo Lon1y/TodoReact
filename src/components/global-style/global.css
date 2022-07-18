@@ -52,3 +52,17 @@ body {
   padding: 15px;
 }
 
+.modalAnimation-enter {
+  opacity: 0;
+}
+.modalAnimation-enter-active {
+  opacity: 1;
+  transition: all 500ms ease-in;
+}
+.modalAnimation-exit {
+  opacity: 1;
+}
+.modalAnimation-exit-active {
+  opacity: 0;
+  transition: all 500ms ease-in;
+}

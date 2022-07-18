@@ -1,4 +1,4 @@
-import styles from './components/global-style/global.css'
+import  './components/global-style/global.css'
 import ListBlock from "./components/listBlock";
 import TodoHeader from "./components/todoHeader";
 import {useState} from "react";
@@ -6,6 +6,7 @@ import MyModal from "./components/Modal/MyModal";
 import List from "./components/List";
 import MyButton from "./components/UI/MyButton/MyButton";
 import AddForm from "./components/addForm";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 function App() {
     const [lists, setList] = useState([
@@ -18,8 +19,12 @@ function App() {
     ])
     const [modal, setModal] = useState(false)
 
-    const changeModal = (modalStatus) => {
-        setModal(modalStatus)
+    const createList = (newList)=> {
+        setList([...lists, newList])
+        changeModal()
+    }
+    const changeModal = () => {
+        setModal(!modal)
     }
     const removeListItem = (item) => {
         setList(lists.filter(el => el.id!==item))
@@ -27,17 +32,10 @@ function App() {
 
   return (
     <div className='todoList'>
-        <TodoHeader
-            modal={modal}
-            modalStatus={changeModal}
-        />
-        <MyModal
-            modalStatus={changeModal}
-            modal={modal}
-        >
-            <AddForm/>
+        <TodoHeader modal={modal} modalStatus={changeModal}/>
+        <MyModal modalStatus={changeModal} modal={modal}>
+            <AddForm create={createList}/>
         </MyModal>
-
        <List lists={lists} remove={removeListItem}/>
     </div>
   );
