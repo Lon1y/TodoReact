@@ -4,6 +4,8 @@ import TodoHeader from "./components/todoHeader";
 import {useState} from "react";
 import MyModal from "./components/Modal/MyModal";
 import List from "./components/List";
+import MyButton from "./components/UI/MyButton/MyButton";
+import AddForm from "./components/addForm";
 
 function App() {
     const [lists, setList] = useState([
@@ -14,7 +16,6 @@ function App() {
         {id:5, name: 'rest', description: 'rest-suck'},
         {id:6, name: 'next', description: 'next-suck'},
     ])
-
     const [modal, setModal] = useState(false)
 
     const changeModal = (modalStatus) => {
@@ -31,8 +32,11 @@ function App() {
             modalStatus={changeModal}
         />
         <MyModal
-            visible={modal}
-        />
+            modalStatus={changeModal}
+            modal={modal}
+        >
+            <AddForm/>
+        </MyModal>
 
        <List lists={lists} remove={removeListItem}/>
     </div>
