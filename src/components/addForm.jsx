@@ -17,11 +17,13 @@ const AddForm = ({create}) => {
     return (
         <form style={{display:'flex', justifyContent:'center', flexDirection:'column'}}>
             <MyInput
+                required
                 placeholder="Название заголовка"
                 value={list.name}
                 onChange = {e=>setList({...list, name:e.target.value})}
             />
             <MyInput
+                required
                 placeholder="Описание"
                 value={list.description}
                 onChange = {e=>setList({...list, description:e.target.value})}

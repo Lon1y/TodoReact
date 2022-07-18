@@ -23,10 +23,14 @@ function App() {
         setList(lists.filter(el => el.id!==item))
         localStorage.setItem('list', JSON.stringify(lists.filter(el => el.id!==item)))
     }
+    const removeAll = () => {
+        setList([])
+        localStorage.clear()
+    }
 
   return (
     <div className='todoList'>
-        <TodoHeader modal={modal} modalStatus={changeModal}/>
+        <TodoHeader removeall={removeAll} modal={modal} modalStatus={changeModal}/>
         <MyModal modalStatus={changeModal} modal={modal}>
             <AddForm create={createList}/>
         </MyModal>
